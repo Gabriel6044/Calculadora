@@ -22,9 +22,6 @@ public class Main {
         segundo_numero = myObj.nextFloat();
         System.out.println("Calculando...");
 
-
-
-
         switch (operacao) {
             case 0: //soma
                 resultado = (primeiro_numero) + (segundo_numero);
@@ -46,8 +43,7 @@ public class Main {
                     resultado = (primeiro_numero) / (segundo_numero);
                     System.out.println((primeiro_numero) + " ÷ " + (segundo_numero) + " = " + resultado);
                     System.out.println("Resto: " + (primeiro_numero) % (segundo_numero));
-                }
-                else {
+                } else {
                     System.out.println("Divisão não permitida.");
 
                 }
