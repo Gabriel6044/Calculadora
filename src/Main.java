@@ -4,6 +4,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
 
+        OperacaoEnum operadores = OperacaoEnum.SOMA;
+        System.out.println(operadores.getOperadores());
+
         float PrimeiroNumero;
         float SegundoNumero;
         float resultado;
