@@ -22,36 +22,7 @@ public class Main {
             SegundoNumero = getNumero(myObj);
             System.out.println("Calculando...");
 
-            switch (operacao) {
-                case 0: //soma
-                    resultado = PrimeiroNumero + SegundoNumero;
-                    anterior = resultado;
-                    System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
-                    break;
-
-                case 1: //subtração
-                    resultado = PrimeiroNumero - SegundoNumero;
-                    anterior = resultado;
-                    System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
-                    break;
-
-                case 2: //multiplicação
-                    resultado = PrimeiroNumero * SegundoNumero;
-                    anterior = resultado;
-                    System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
-                    break;
-
-                case 3: //divisão
-                    if (SegundoNumero >= 1 || SegundoNumero <= -1) {
-                        resultado = PrimeiroNumero / SegundoNumero;
-                        anterior = resultado;
-                        System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
-                        System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
-                    } else {
-                        System.out.println("Divisão impossível.");
-                    }
-                    break;
-            }
+            anterior = getOperacoes(operacao, PrimeiroNumero, SegundoNumero, anterior);
 
             while (keepRunning2) {
                 System.out.println("Deseja realizar outra operação? (s/n)");
@@ -74,38 +45,44 @@ public class Main {
                 PrimeiroNumero = anterior;
                 SegundoNumero = getNumero(myObj);
 
-                switch (operacao) {
-                    case 0: //soma
-                        resultado = PrimeiroNumero + SegundoNumero;
-                        anterior = resultado;
-                        System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
-                        break;
-
-                    case 1: //subtração
-                        resultado = PrimeiroNumero - SegundoNumero;
-                        anterior = resultado;
-                        System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
-                        break;
-
-                    case 2: //multiplicação
-                        resultado = PrimeiroNumero * SegundoNumero;
-                        anterior = resultado;
-                        System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
-                        break;
-
-                    case 3: //divisão
-                        if (SegundoNumero >= 1 || SegundoNumero <= -1) {
-                            resultado = PrimeiroNumero / SegundoNumero;
-                            anterior = resultado;
-                            System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
-                            System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
-                        } else {
-                            System.out.println("Divisão impossível.");
-                        }
-                        break;
-                }
+                anterior = getOperacoes(operacao, PrimeiroNumero, SegundoNumero, anterior);
             }
         }
+    }
+
+    private static float getOperacoes(int operacao, float PrimeiroNumero, float SegundoNumero, float anterior) {
+        float resultado;
+        switch (operacao) {
+            case 0: //soma
+                resultado = PrimeiroNumero + SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
+                break;
+
+            case 1: //subtração
+                resultado = PrimeiroNumero - SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
+                break;
+
+            case 2: //multiplicação
+                resultado = PrimeiroNumero * SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
+                break;
+
+            case 3: //divisão
+                if (SegundoNumero >= 1 || SegundoNumero <= -1) {
+                    resultado = PrimeiroNumero / SegundoNumero;
+                    anterior = resultado;
+                    System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
+                    System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
+                } else {
+                    System.out.println("Divisão impossível.");
+                }
+                break;
+        }
+        return anterior;
     }
 
     private static void explicacao() {
