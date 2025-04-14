@@ -108,7 +108,6 @@ public class Main {
         }
     }
 
-
     private static void explicacao() {
         System.out.println("Selecione a operação desejada:");
         System.out.println("0 - Soma");
@@ -151,8 +150,6 @@ public class Main {
             return getOperacao(objeto);
         }
     }
-
-
 }
 
 
