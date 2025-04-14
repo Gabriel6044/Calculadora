@@ -58,17 +58,15 @@ public class Main {
                 Scanner myAns = new Scanner(System.in);
                 String resposta = getResposta(myAns);
                 if (resposta.equalsIgnoreCase("n")) {
-                    System.out.println("Obrigado por usar a calculadora");
-                    return;
+                    System.exit(0);
+                } else {
+                    System.out.println("Manter resultados anteriores? (s/n)");
+                    Scanner myAns2 = new Scanner(System.in);
+                    String resposta2 = getResposta(myAns2);
+                    if (resposta2.equalsIgnoreCase("n")) {
+                        main(args); // Reinicia o programa
+                    }
                 }
-
-                System.out.println("Manter resultados anteriores? (s/n)");
-                Scanner myAns2 = new Scanner(System.in);
-                String resposta2 = getResposta(myAns2);
-                if (resposta2.equalsIgnoreCase("n")) {
-                    main(args); // Reinicia o programa
-                }
-
                 System.out.println("Perfeito! Vamos continuar com os resultados anteriores.");
                 explicacao();
                 operacao = getOperacao(myObj);
