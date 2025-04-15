@@ -2,6 +2,12 @@ import java.util.Scanner;
 
 public class Calculadora {
 
+    static opEnum opSoma = opEnum.SOMA;
+    static opEnum opSubtracao = opEnum.SUBTRACAO;
+    static opEnum opMultiplicacao = opEnum.MULTIPLICACAO;
+    static opEnum opDivisao = opEnum.DIVISAO;
+
+
     static float PrimeiroNumero;
     static float SegundoNumero;
     static float anterior;
@@ -41,26 +47,26 @@ public class Calculadora {
 
     static float getOperacoes(int operacao, float PrimeiroNumero, float SegundoNumero, float anterior) {
         float resultado;
-        switch (operacao) {
-            case 0: //soma
+        switch (opEnum) {
+            case (opSoma.getValor()): //soma
                 resultado = PrimeiroNumero + SegundoNumero;
                 anterior = resultado;
                 System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
                 break;
 
-            case 1: //subtração
+            case (opSubtracao.getValor()): //subtração
                 resultado = PrimeiroNumero - SegundoNumero;
                 anterior = resultado;
                 System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
                 break;
 
-            case 2: //multiplicação
+            case (opMultiplicacao.getValor()): //multiplicação
                 resultado = PrimeiroNumero * SegundoNumero;
                 anterior = resultado;
                 System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
                 break;
 
-            case 3: //divisão
+            case (opDivisao.getValor()): //divisão
                 if (SegundoNumero >= 1 || SegundoNumero <= -1) {
                     resultado = PrimeiroNumero / SegundoNumero;
                     anterior = resultado;
@@ -75,6 +81,7 @@ public class Calculadora {
     }
 
     static void explicacao() {
+        System.out.println(opSoma.getValor());
         System.out.println("Selecione a operação desejada:");
         System.out.println("0 - Soma");
         System.out.println("1 - Subtração");
