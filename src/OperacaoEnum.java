@@ -5,10 +5,12 @@ public enum OperacaoEnum {
     MULTIPLICACAO(3);
 
     final int operadores;
-    OperacaoEnum(int operadores){
-    this.operadores = operadores;
+
+    OperacaoEnum(int operadores) {
+        this.operadores = operadores;
     }
-    public int getOperadores(){
+
+    public int getOperadores() {
         return this.operadores;
     }
 }
