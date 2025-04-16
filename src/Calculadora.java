@@ -30,12 +30,9 @@ public class Calculadora {
         this.anterior = anterior;
     }
 
-    public void setOperacao(OperacaoEnum operacao) {
-        this.operacao = operacao;
-    }
 
-    public void readOperacao(Scanner scanner){
-        try{
+    public void readOperacao(Scanner scanner) {
+        try {
             int escrita = scanner.nextInt();
             if (escrita < 0 || escrita > 3) {
                 throw new Exception("Operação inválida");
@@ -49,7 +46,7 @@ public class Calculadora {
         }
     }
 
-    float getOperacoes(float PrimeiroNumero, float SegundoNumero, float anterior) {
+    float calculaOperacoes(float PrimeiroNumero, float SegundoNumero, float anterior) {
         float resultado;
         switch (operacao) {
             case SOMA:

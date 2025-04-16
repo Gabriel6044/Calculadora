@@ -14,7 +14,7 @@ public class Main {
         calculadora.setSegundoNumero(calculadora.getNumero(scanner));
         System.out.println("Calculando...");
 
-        calculadora.setAnterior(calculadora.getOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
+        calculadora.setAnterior(calculadora.calculaOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
 
         while (true) {
             System.out.println("Deseja realizar outra operação? (s/n)");
@@ -38,7 +38,7 @@ public class Main {
             calculadora.setPrimeiroNumero(calculadora.getAnterior());
             calculadora.setSegundoNumero(calculadora.getNumero(scanner));
 
-            calculadora.setAnterior(calculadora.getOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
+            calculadora.setAnterior(calculadora.calculaOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
         }
     }
 

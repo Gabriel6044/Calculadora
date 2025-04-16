@@ -4,8 +4,6 @@ public enum OperacaoEnum {
     MULTIPLICACAO(2, "Multiplicação"),
     DIVISAO(3, "Divisão");
 
-
-
     private final int valor;
     private final String descricao;
 
@@ -21,6 +19,7 @@ public enum OperacaoEnum {
     public String getDescricao() {
         return this.descricao;
     }
+
     public static OperacaoEnum fromValor(int valor) {
         for (OperacaoEnum operacao : OperacaoEnum.values()) {
             if (operacao.getValor() == valor) {
