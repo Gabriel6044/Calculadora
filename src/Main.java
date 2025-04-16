@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
-
         System.out.println("Olá! Bem-vindo à calculadora!");
         Calculadora.explicacao();
         Calculadora.setOperacao(Calculadora.getOperacao(myObj));
@@ -13,7 +12,7 @@ public class Main {
         Calculadora.setSegundoNumero(Calculadora.getNumero(myObj));
         System.out.println("Calculando...");
 
-        Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getOperacao(), Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
+        Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
 
         while (true) {
             System.out.println("Deseja realizar outra operação? (s/n)");
@@ -38,7 +37,7 @@ public class Main {
             Calculadora.setPrimeiroNumero(Calculadora.getAnterior());
             Calculadora.setSegundoNumero(Calculadora.getNumero(myObj));
 
-            Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getOperacao(), Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
+            Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
         }
     }
 

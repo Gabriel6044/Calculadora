@@ -6,8 +6,6 @@ public enum opEnum {
 
     private final int valor;
 
-
-
     opEnum(int valor) {
         this.valor = valor;
     }

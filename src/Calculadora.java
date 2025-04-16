@@ -37,51 +37,42 @@ public class Calculadora {
         Calculadora.anterior = anterior;
     }
 
-    public static int getOperacao() {
-        return operacao;
-    }
-
     public static void setOperacao(int operacao) {
         Calculadora.operacao = operacao;
     }
 
-    static float getOperacoes(int operacao, float PrimeiroNumero, float SegundoNumero, float anterior) {
+    static float getOperacoes(float PrimeiroNumero, float SegundoNumero, float anterior) {
         float resultado;
-        switch (opEnum) {
-            case (opSoma.getValor()): //soma
-                resultado = PrimeiroNumero + SegundoNumero;
-                anterior = resultado;
-                System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
-                break;
+        if (operacao == opSoma.getValor()) {
+            resultado = PrimeiroNumero + SegundoNumero;
+            anterior = resultado;
+            System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
 
-            case (opSubtracao.getValor()): //subtração
-                resultado = PrimeiroNumero - SegundoNumero;
-                anterior = resultado;
-                System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
-                break;
+        } else if (operacao == opSubtracao.getValor()) {
+            resultado = PrimeiroNumero - SegundoNumero;
+            anterior = resultado;
+            System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
 
-            case (opMultiplicacao.getValor()): //multiplicação
-                resultado = PrimeiroNumero * SegundoNumero;
-                anterior = resultado;
-                System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
-                break;
+        } else if (operacao == opMultiplicacao.getValor()) {
+            resultado = PrimeiroNumero * SegundoNumero;
+            anterior = resultado;
+            System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
 
-            case (opDivisao.getValor()): //divisão
-                if (SegundoNumero >= 1 || SegundoNumero <= -1) {
-                    resultado = PrimeiroNumero / SegundoNumero;
-                    anterior = resultado;
-                    System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
-                    System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
-                } else {
-                    System.out.println("Divisão impossível.");
-                }
-                break;
+        } else if (operacao == opDivisao.getValor()) {
+            if (SegundoNumero >= 1 || SegundoNumero <= -1) {
+                resultado = PrimeiroNumero / SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
+                System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
+
+            } else {
+                System.out.println("Divisão impossível.");
+            }
         }
         return anterior;
     }
 
     static void explicacao() {
-        System.out.println(opSoma.getValor());
         System.out.println("Selecione a operação desejada:");
         System.out.println("0 - Soma");
         System.out.println("1 - Subtração");
@@ -111,12 +102,22 @@ public class Calculadora {
 
     static int getOperacao(Scanner objeto) {
         try {
-            int operacao;
-            operacao = objeto.nextInt();
-            if (operacao < 0 || operacao > 3) {
+            int escrita;
+            escrita = objeto.nextInt();
+            if (escrita < 0 || escrita > 3) {
                 throw new Exception("Operação inválida");
             }
-            return operacao;
+            // Atribui o valor da operação correspondente
+            if (escrita == 0) {
+                return operacao = opSoma.getValor();
+            } else if (escrita == 1) {
+                return operacao = opSubtracao.getValor();
+            } else if (escrita == 2) {
+                return operacao = opMultiplicacao.getValor();
+            } else {
+                return operacao = opDivisao.getValor();
+            }
+
         } catch (Exception e) {
             System.out.println("Operação inválida. Tente novamente.");
             objeto.next(); // Limpa o buffer
@@ -125,5 +126,9 @@ public class Calculadora {
     }
 
 }
+
+
+
+
 
 
