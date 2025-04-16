@@ -2,42 +2,43 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);
+        Calculadora calculadora = new Calculadora();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Olá! Bem-vindo à calculadora!");
-        Calculadora.explicacao();
-        Calculadora.setOperacao(Calculadora.getOperacao(myObj));
+        calculadora.explicacao();
+        calculadora.readOperacao(scanner);
+        System.out.println(calculadora.operacao);
         System.out.println("Perfeito! Agora selecione seu primeiro número:");
-        Calculadora.setPrimeiroNumero(Calculadora.getNumero(myObj));
+        calculadora.setPrimeiroNumero(calculadora.getNumero(scanner));
         System.out.println("Selecione seu segundo número:");
-        Calculadora.setSegundoNumero(Calculadora.getNumero(myObj));
+        calculadora.setSegundoNumero(calculadora.getNumero(scanner));
         System.out.println("Calculando...");
 
-        Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
+        calculadora.setAnterior(calculadora.getOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
 
         while (true) {
             System.out.println("Deseja realizar outra operação? (s/n)");
             Scanner myAns = new Scanner(System.in);
-            String resposta = Calculadora.getResposta(myAns);
+            String resposta = calculadora.getResposta(myAns);
             if (resposta.equalsIgnoreCase("n")) {
                 System.exit(0);
             }
 
             System.out.println("Manter resultados anteriores? (s/n)");
             Scanner myAns2 = new Scanner(System.in);
-            String resposta2 = Calculadora.getResposta(myAns2);
+            String resposta2 = calculadora.getResposta(myAns2);
             if (resposta2.equalsIgnoreCase("n")) {
                 main(args); // Reinicia o programa
             }
 
-
             System.out.println("Perfeito! Vamos continuar com os resultados anteriores.");
-            Calculadora.explicacao();
-            Calculadora.setOperacao(Calculadora.getOperacao(myObj));
+            calculadora.explicacao();
+            calculadora.readOperacao(scanner);
             System.out.println("Selecione seu próximo número:");
-            Calculadora.setPrimeiroNumero(Calculadora.getAnterior());
-            Calculadora.setSegundoNumero(Calculadora.getNumero(myObj));
+            calculadora.setPrimeiroNumero(calculadora.getAnterior());
+            calculadora.setSegundoNumero(calculadora.getNumero(scanner));
 
-            Calculadora.setAnterior(Calculadora.getOperacoes(Calculadora.getPrimeiroNumero(), Calculadora.getSegundoNumero(), Calculadora.getAnterior()));
+            calculadora.setAnterior(calculadora.getOperacoes(calculadora.getPrimeiroNumero(), calculadora.getSegundoNumero(), calculadora.getAnterior()));
         }
     }
 

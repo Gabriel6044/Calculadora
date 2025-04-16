@@ -1,86 +1,98 @@
 import java.util.Scanner;
 
 public class Calculadora {
+    private float primeiroNumero;
+    private float segundoNumero;
+    private float anterior;
+    OperacaoEnum operacao;
 
-    static opEnum opSoma = opEnum.SOMA;
-    static opEnum opSubtracao = opEnum.SUBTRACAO;
-    static opEnum opMultiplicacao = opEnum.MULTIPLICACAO;
-    static opEnum opDivisao = opEnum.DIVISAO;
-
-
-    static float PrimeiroNumero;
-    static float SegundoNumero;
-    static float anterior;
-    static int operacao;
-
-    public static float getPrimeiroNumero() {
-        return PrimeiroNumero;
+    public float getPrimeiroNumero() {
+        return primeiroNumero;
     }
 
-    public static void setPrimeiroNumero(float primeiroNumero) {
-        PrimeiroNumero = primeiroNumero;
+    public void setPrimeiroNumero(float primeiroNumero) {
+        this.primeiroNumero = primeiroNumero;
     }
 
-    public static float getSegundoNumero() {
-        return SegundoNumero;
+    public float getSegundoNumero() {
+        return segundoNumero;
     }
 
-    public static void setSegundoNumero(float segundoNumero) {
-        SegundoNumero = segundoNumero;
+    public void setSegundoNumero(float segundoNumero) {
+        this.segundoNumero = segundoNumero;
     }
 
-    public static float getAnterior() {
+    public float getAnterior() {
         return anterior;
     }
 
-    public static void setAnterior(float anterior) {
-        Calculadora.anterior = anterior;
+    public void setAnterior(float anterior) {
+        this.anterior = anterior;
     }
 
-    public static void setOperacao(int operacao) {
-        Calculadora.operacao = operacao;
+    public void setOperacao(OperacaoEnum operacao) {
+        this.operacao = operacao;
     }
 
-    static float getOperacoes(float PrimeiroNumero, float SegundoNumero, float anterior) {
-        float resultado;
-        if (operacao == opSoma.getValor()) {
-            resultado = PrimeiroNumero + SegundoNumero;
-            anterior = resultado;
-            System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
-
-        } else if (operacao == opSubtracao.getValor()) {
-            resultado = PrimeiroNumero - SegundoNumero;
-            anterior = resultado;
-            System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
-
-        } else if (operacao == opMultiplicacao.getValor()) {
-            resultado = PrimeiroNumero * SegundoNumero;
-            anterior = resultado;
-            System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
-
-        } else if (operacao == opDivisao.getValor()) {
-            if (SegundoNumero >= 1 || SegundoNumero <= -1) {
-                resultado = PrimeiroNumero / SegundoNumero;
-                anterior = resultado;
-                System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
-                System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
-
-            } else {
-                System.out.println("Divisão impossível.");
+    public void readOperacao(Scanner scanner){
+        try{
+            int escrita = scanner.nextInt();
+            if (escrita < 0 || escrita > 3) {
+                throw new Exception("Operação inválida");
             }
+            // Atribui o valor da operação correspondente
+            this.operacao = OperacaoEnum.fromValor(escrita);
+        } catch (Exception e) {
+            System.out.println("Operação inválida. Tente novamente.");
+            scanner.next(); // Limpa o buffer
+            readOperacao(scanner);
+        }
+    }
+
+    float getOperacoes(float PrimeiroNumero, float SegundoNumero, float anterior) {
+        float resultado;
+        switch (operacao) {
+            case SOMA:
+                resultado = PrimeiroNumero + SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " + " + SegundoNumero + " = " + resultado);
+                break;
+
+            case SUBTRACAO:
+                resultado = PrimeiroNumero - SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " - " + SegundoNumero + " = " + resultado);
+                break;
+
+            case MULTIPLICACAO:
+                resultado = PrimeiroNumero * SegundoNumero;
+                anterior = resultado;
+                System.out.println(PrimeiroNumero + " * " + SegundoNumero + " = " + resultado);
+                break;
+
+            case DIVISAO:
+                if (SegundoNumero >= 1 || SegundoNumero <= -1) {
+                    resultado = PrimeiroNumero / SegundoNumero;
+                    anterior = resultado;
+                    System.out.println(PrimeiroNumero + " ÷ " + SegundoNumero + " = " + resultado);
+                    System.out.println("Resto: " + PrimeiroNumero % SegundoNumero);
+
+                } else {
+                    System.out.println("Divisão impossível.");
+                    return 0; // Retorna 0 se a divisão for impossível
+                }
         }
         return anterior;
     }
 
-    static void explicacao() {
+    void explicacao() {
         System.out.println("Selecione a operação desejada:");
-        System.out.println("0 - Soma");
-        System.out.println("1 - Subtração");
-        System.out.println("2 - Multiplicação");
-        System.out.println("3 - Divisão");
+        for (OperacaoEnum operacao : OperacaoEnum.values()) {
+            System.out.println(operacao.getValor() + " - " + operacao.getDescricao());
+        }
     }
 
-    static String getResposta(Scanner myAns) {
+    String getResposta(Scanner myAns) {
         String resposta = myAns.next();
         if (resposta.equalsIgnoreCase("s") || resposta.equalsIgnoreCase("n")) {
             return resposta;
@@ -90,7 +102,7 @@ public class Calculadora {
         }
     }
 
-    static float getNumero(Scanner myObj) {
+    float getNumero(Scanner myObj) {
         try {
             return myObj.nextFloat();
         } catch (Exception e) {
@@ -100,29 +112,8 @@ public class Calculadora {
         }
     }
 
-    static int getOperacao(Scanner objeto) {
-        try {
-            int escrita;
-            escrita = objeto.nextInt();
-            if (escrita < 0 || escrita > 3) {
-                throw new Exception("Operação inválida");
-            }
-            // Atribui o valor da operação correspondente
-            if (escrita == 0) {
-                return operacao = opSoma.getValor();
-            } else if (escrita == 1) {
-                return operacao = opSubtracao.getValor();
-            } else if (escrita == 2) {
-                return operacao = opMultiplicacao.getValor();
-            } else {
-                return operacao = opDivisao.getValor();
-            }
-
-        } catch (Exception e) {
-            System.out.println("Operação inválida. Tente novamente.");
-            objeto.next(); // Limpa o buffer
-            return getOperacao(objeto);
-        }
+    public OperacaoEnum getOperacao() {
+        return operacao;
     }
 
 }
