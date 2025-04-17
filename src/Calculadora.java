@@ -33,12 +33,13 @@ public class Calculadora {
 
     public void readOperacao(Scanner scanner) {
         try {
-            int escrita = scanner.nextInt();
-            if (escrita < 0 || escrita > 3) {
+            String escrita = scanner.next();
+            if (escrita.equals("+") || escrita.equals("-") || escrita.equals("*") || escrita.equals("/")) {
+                this.operacao = OperacaoEnum.fromValor(escrita);   // Atribui o valor da operação correspondente
+            } else {
                 throw new Exception("Operação inválida");
             }
-            // Atribui o valor da operação correspondente
-            this.operacao = OperacaoEnum.fromValor(escrita);
+
         } catch (Exception e) {
             System.out.println("Operação inválida. Tente novamente.");
             scanner.next(); // Limpa o buffer
@@ -85,7 +86,7 @@ public class Calculadora {
     void explicacao() {
         System.out.println("Selecione a operação desejada:");
         for (OperacaoEnum operacao : OperacaoEnum.values()) {
-            System.out.println(operacao.getValor() + " - " + operacao.getDescricao());
+            System.out.println(operacao.getSimbolo() + " " + operacao.getDescricao());
         }
     }
 

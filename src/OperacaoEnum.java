@@ -1,32 +1,34 @@
-public enum OperacaoEnum {
-    SOMA(0, "Soma"),
-    SUBTRACAO(1, "Subtração"),
-    MULTIPLICACAO(2, "Multiplicação"),
-    DIVISAO(3, "Divisão");
+import java.util.Objects;
 
-    private final int valor;
+public enum OperacaoEnum {
+    SOMA("+", "Soma"),
+    SUBTRACAO("-", "Subtração"),
+    MULTIPLICACAO("*", "Multiplicação"),
+    DIVISAO("/", "Divisão");
+
+    private final String simbolo;
     private final String descricao;
 
-    OperacaoEnum(int valor, String descricao) {
-        this.valor = valor;
+    OperacaoEnum(String simbolo, String descricao) {
+        this.simbolo = simbolo;
         this.descricao = descricao;
     }
 
-    public int getValor() {
-        return this.valor;
+    public String getSimbolo() {
+        return this.simbolo;
     }
 
     public String getDescricao() {
         return this.descricao;
     }
 
-    public static OperacaoEnum fromValor(int valor) {
+    public static OperacaoEnum fromValor(String simbolo) {
         for (OperacaoEnum operacao : OperacaoEnum.values()) {
-            if (operacao.getValor() == valor) {
+            if (Objects.equals(operacao.getSimbolo(), simbolo)) {
                 return operacao;
             }
         }
-        throw new IllegalArgumentException("Operação inválida: " + valor);
+        throw new IllegalArgumentException("Operação inválida: " + simbolo);
     }
 
 

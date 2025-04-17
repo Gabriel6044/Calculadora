@@ -7,7 +7,6 @@ public class Main {
         System.out.println("Olá! Bem-vindo à calculadora!");
         calculadora.explicacao();
         calculadora.readOperacao(scanner);
-        System.out.println(calculadora.operacao);
         System.out.println("Perfeito! Agora selecione seu primeiro número:");
         calculadora.setPrimeiroNumero(calculadora.getNumero(scanner));
         System.out.println("Selecione seu segundo número:");
